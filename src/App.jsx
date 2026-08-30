@@ -3,7 +3,13 @@ import { requestForToken, onMessageListener } from './firebase';
 
 function App() {
   useEffect(() => {
-    requestForToken();
+    requestForToken().then((token) => {
+      if (token) {
+        console.log("FCM Token (Laptop): ", token);
+        alert("Token របស់អ្នកគឺ៖ " + token); // เด้งបង្ហាញលើទូរសព្ទដើម្បី Copy
+      }
+    });
+
     onMessageListener()
       .then((payload) => { 
         alert(`ទទួលបានសារថ្មី៖ \n${payload.notification.title}\n${payload.notification.body}`);
