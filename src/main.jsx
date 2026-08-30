@@ -10,7 +10,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
   </React.StrictMode>,
 )
 
-// ចុះឈ្មោះ Service Worker របស់ PWA ដោយប្រើកូដ Browser ផ្ទាល់
+ 
 if ('serviceWorker' in navigator && import.meta.env.PROD) {
   window.addEventListener('load', () => {
     navigator.serviceWorker.register('/sw.js') // sw.js នឹងត្រូវបង្កើតដោយ Vite PWA ពេល build

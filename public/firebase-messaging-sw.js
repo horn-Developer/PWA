@@ -1,11 +1,10 @@
-// public/firebase-messaging-sw.js
-importScripts('https://gstatic.com');
-importScripts('https://gstatic.com');
+// នាំចូល Firebase Compat scripts សម្រាប់ Service Worker
+importScripts('https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js');
+importScripts('https://www.gstatic.com/firebasejs/10.8.0/firebase-messaging-compat.js');
 
-// ដាក់ Firebase Config របស់បងដូចក្នុង App.jsx ដែរ
 const firebaseConfig = {
   apiKey: "AIzaSyBqjt4YqVdGMYbxr0OkTgC0FkRVRDPHfUw",
-  authDomain: "://firebaseapp.com",
+  authDomain: "my-app-8e194.firebaseapp.com",
   projectId: "my-app-8e194",
   storageBucket: "my-app-8e194.firebasestorage.app",
   messagingSenderId: "547411796892",
@@ -16,12 +15,12 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 const messaging = firebase.messaging();
 
-// កូដសម្រាប់បង្ហាញសារដំណឹងពេលបិទ App (Background)
 messaging.onBackgroundMessage((payload) => {
+  console.log('[firebase-messaging-sw.js] recive message  ', payload);
   const notificationTitle = payload.notification.title;
   const notificationOptions = {
     body: payload.notification.body,
-    icon: '/pwa-192x192.png'
+    icon: '/firebase-logo.png'  
   };
 
   self.registration.showNotification(notificationTitle, notificationOptions);
